@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FizzBuzz - Wprowadź liczbę{% endblock %}
+
+{% block body %}
+    <h1>FizzBuzz</h1>
+
+    <form method="POST" action="{{ path('app_fizzbuzz_result') }}">
+        <label for="fizz-input">Podaj liczbę:</label>
+        <input type="number" name="number" id="fizz-input" min="1" required>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('app_fizzbuzz') }}">
+        <button type="submit">Generuj</button>
+    </form>
+{% endblock %}

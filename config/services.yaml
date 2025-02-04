@@ -6,7 +6,7 @@
 parameters:
 
 services:
-    App\Services\SubscriptionService:
+    App\Service\SubscriptionService:
         arguments:
             $kernel: '@kernel'
     # default configuration for services in *this* file

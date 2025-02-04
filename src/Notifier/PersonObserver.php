@@ -3,7 +3,7 @@
 namespace App\Notifier;
 
 use App\Entity\Person;
-use App\Services\SubscriptionService;
+use App\Service\SubscriptionService;
 
 class PersonObserver implements ObserverInterface
 {

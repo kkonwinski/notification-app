@@ -2,11 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Person;
 use App\Notifier\NotificationSubject;
 use App\Notifier\PersonObserver;
 use App\Repository\PersonRepository;
-use App\Services\SubscriptionService;
+use App\Service\SubscriptionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

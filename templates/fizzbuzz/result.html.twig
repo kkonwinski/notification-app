@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FizzBuzz - Wynik{% endblock %}
+
+{% block body %}
+    <h1>FizzBuzz - Wynik</h1>
+
+    {% if number is not null %}
+        <h2>Wynik dla liczby {{ number }}:</h2>
+        <ul>
+            {% for item in result %}
+                <li>{{ item }}</li>
+            {% else %}
+                <li>Brak wyników</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nie podano liczby.</p>
+    {% endif %}
+
+    <a href="{{ path('app_fizzbuzz_input') }}">Powrót do formularza</a>
+{% endblock %}
