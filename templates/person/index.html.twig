@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista Osób{% endblock %}
+
+{% block body %}
+    <h1>Lista Osób</h1>
+
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Imię i nazwisko</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Email</th>
+            <th>SMS</th>
+            <th>Akcje</th>
+        </tr>
+        {% for row in persons %}
+            {% set person = row.person %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{ person.fullName }}</td>
+                <td>{{ person.email }}</td>
+                <td>{{ person.phone }}</td>
+                <td>
+                    {% if row.emailSubscribed %}
+                        <a href="{{ path('app_subscription_unsubscribe', {personId: person.id, type: 'email'}) }}">(Unsubscribe)</a>
+                    {% else %}
+                        <a href="{{ path('app_subscription_subscribe', {personId: person.id, type: 'email'}) }}">Subscribe</a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if row.smsSubscribed %}
+                        <a href="{{ path('app_subscription_unsubscribe', {personId: person.id, type: 'sms'}) }}">(Unsubscribe)</a>
+                    {% else %}
+                        <a href="{{ path('app_subscription_subscribe', {personId: person.id, type: 'sms'}) }}">Subscribe</a>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('app_person_edit', {id: person.id}) }}">Edytuj</a> |
+                    <a href="{{ path('app_person_delete', {id: person.id}) }}">Usuń</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+
+    <br>
+    <a href="{{ path('app_person_new') }}">Dodaj nową osobę</a>
+
+    <br><br>
+    <h2>Wyślij powiadomienie do subskrybentów</h2>
+    <form action="{{ path('app_subscription_send_notification') }}" method="POST">
+        <textarea name="message" rows="3" cols="50" placeholder="Treść powiadomienia"></textarea><br>
+        <button type="submit">Wyślij</button>
+    </form>
+{% endblock %}

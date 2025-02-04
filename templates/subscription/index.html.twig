@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subskrypcje osoby {{ person.fullName }}</h1>
+
+    <p>Email:
+        {% if emailSubscribed %}
+            Zasubskrybowane
+            <a href="{{ path('app_subscription_unsubscribe', { personId: person.id, type: 'email' }) }}">(Unsubscribe)</a>
+        {% else %}
+            <a href="{{ path('app_subscription_subscribe', { personId: person.id, type: 'email' }) }}">Subscribe</a>
+        {% endif %}
+    </p>
+
+    <p>SMS:
+        {% if smsSubscribed %}
+            Zasubskrybowane
+            <a href="{{ path('app_subscription_unsubscribe', { personId: person.id, type: 'sms' }) }}">(Unsubscribe)</a>
+        {% else %}
+            <a href="{{ path('app_subscription_subscribe', { personId: person.id, type: 'sms' }) }}">Subscribe</a>
+        {% endif %}
+    </p>
+
+    <a href="{{ path('app_person_index') }}">Wróć do listy osób</a>
+{% endblock %}
